@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import App from './App';
 import vueRouter from 'vue-router';
+import vueResource from 'vue-resource';
+import 'common/stylus/index.styl';
 import home from 'components/home/home.vue';
 import notes from 'components/notes/notes.vue';
 import about from 'components/about/about.vue';
 
 Vue.use(vueRouter);
+Vue.use(vueResource);
+
 
 const routes = [
   {

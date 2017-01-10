@@ -1,0 +1,68 @@
+body,
+html {
+  line-height: 1;
+  font-weight: 200;
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'STHeitiSC-Light', 'Helvetica', 'arial', 'sans-serif';
+}
+.clearfix {
+  display: inline-block;
+}
+.clearfix:after {
+  display: block;
+  content: ".";
+  height: 0;
+  line-height: 0;
+  clear: both;
+  visibility: hidden;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-radio: 1.5) {
+  .border-1px::after {
+    -webkit-transform: scaleY(0.7);
+    transform: scaleY(0.7);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-radio: 2) {
+  .border-1px::after {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+@font-face {
+  font-family: 'lleon';
+  src: url("../fonts/lleon.eot?2vf64c");
+  src: url("../fonts/lleon.eot?2vf64c#iefix") format('embedded-opentype'), url("../fonts/lleon.ttf?2vf64c") format('truetype'), url("../fonts/lleon.woff?2vf64c") format('woff'), url("../fonts/lleon.svg?2vf64c#lleon") format('svg');
+  font-weight: norma;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+/* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'lleon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-next:before {
+  content: "\e900";
+}
+.icon-prev:before {
+  content: "\e901";
+}
+.icon-search:before {
+  content: "\e902";
+}
+.icon-email:before {
+  content: "\e903";
+}
+.icon-location:before {
+  content: "\e904";
+}
+.icon-github:before {
+  content: "\e905";
+}

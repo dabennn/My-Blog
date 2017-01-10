@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <div class="articles">
+      <h2>Article</h2>
       <div class="article-list">
-        <h2>Home</h2>
         <ul>
           <li>
             <h3 class="title">article-title</h3>
@@ -41,5 +41,6 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
+  .content
+    margin:0 180px 0 180px
 </style>

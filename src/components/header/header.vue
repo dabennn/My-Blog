@@ -9,7 +9,7 @@
           <span class="text">Hangzhou,China</span>
         </li>
         <li>
-          <a href="https://github.com/dabennn" style="color:#fff">
+          <a href="https://github.com/dabennn">
             <i class="icon-github"></i>
             <span class="text">dabennn</span>
           </a>

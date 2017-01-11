@@ -17,19 +17,19 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 
 var appData = require('../data.json')
-var article = appData.article
-var note = appData.note
+var articles = appData.articleList
+var notes = appData.noteList
 var apiRoutes = express.Router()
-apiRoutes.get('/article',function (req,res) {
+apiRoutes.get('/articles',function (req,res) {
   res.json({
     errno:0,
-    data:article
+    data:articles
   })
 })
-apiRoutes.get('/note',function (req,res) {
+apiRoutes.get('/notes',function (req,res) {
   res.json({
     errno:0,
-    data:note
+    data:notes
   })
 })
 app.use('/api',apiRoutes)

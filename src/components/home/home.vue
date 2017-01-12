@@ -12,25 +12,21 @@
           </li>
         </ul>
       </div>
-      <v-pagination :pageNum="pageNum" v-on:getIndex="processIndex"></v-pagination>
+      <v-pagination :pageNum="pageNum" :getIndex="processIndex"></v-pagination>
     </div>
     <div class="sidebar">
-      <div class="classify-list">
-        <h4>Classifys</h4>
-        <ul>
-          <li v-for="classify in classifys">{{classify.name}}({{classify.num}})</li>
-        </ul>
-      </div>
-      <div class="tag-list">
-        <h4>Tags</h4>
-        <span class="tag" v-for="tag in tags">{{tag}}</span>
-      </div>
+      <v-search></v-search>
+      <v-classifyList :classifys="classifys"></v-classifyList>
+      <v-tagList :tags="tags"></v-tagList>
     </div>
   </div>
 </template>
 
 <script>
   import pagination from 'components/pagination/pagination.vue';
+  import search from 'components/search/search.vue';
+  import classifyList from 'components/classifyList/classifyList.vue';
+  import tagList from 'components/tagList/tagList.vue';
   const ERR_OK = 0;
 
   export default{
@@ -43,7 +39,10 @@
       };
     },
     components: {
-      'v-pagination': pagination
+      'v-pagination': pagination,
+      'v-search': search,
+      'v-classifyList': classifyList,
+      'v-tagList': tagList
     },
     methods: {
       processIndex(index){

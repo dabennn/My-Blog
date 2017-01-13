@@ -25,7 +25,6 @@
 
 <script>
   import navbar from 'components/navbar/navbar.vue';
-  import 'common/stylus/base.styl';
 
   export default{
     components: {

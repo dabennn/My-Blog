@@ -6,6 +6,7 @@ import 'common/stylus/index.styl';
 import home from 'components/home/home.vue';
 import notes from 'components/notes/notes.vue';
 import about from 'components/about/about.vue';
+import category from 'components/category/category.vue';
 
 Vue.use(vueRouter);
 Vue.use(vueResource);
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/home',
     component: home
+  },
+  {
+    path: '/category',
+    component: category
   },
   {
     path: '/notes',

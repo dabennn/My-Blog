@@ -8,16 +8,15 @@
               <a href="#" class="title-link">{{article.title}}</a>
             </h3>
             <span class="date">{{article.date}}</span>
-            <p class="excerpt">{{article.content}}</p>
+            <p class="excerpt">{{article.excerpt}}</p>
           </li>
         </ul>
       </div>
-      <v-pagination :pageNum="pageNum" :getIndex="processIndex"></v-pagination>
+      <v-pagination :pageNum="pageNum" v-on:getIndex="processIndex"></v-pagination>
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-classifyList :classifys="classifys"></v-classifyList>
-      <v-tagList :tags="tags"></v-tagList>
+      <v-categoryList :categories="categories"></v-categoryList>
     </div>
   </div>
 </template>
@@ -25,29 +24,26 @@
 <script>
   import pagination from 'components/pagination/pagination.vue';
   import search from 'components/search/search.vue';
-  import classifyList from 'components/classifyList/classifyList.vue';
-  import tagList from 'components/tagList/tagList.vue';
+  import categoryList from 'components/categoryList/categoryList.vue';
   const ERR_OK = 0;
 
   export default{
     data(){
       return {
         articles: [],
-        classifys: {},
-        tags: [],
-        articleRendered: [],
+        categories: {},
+        articleRendered: []
       };
     },
     components: {
       'v-pagination': pagination,
       'v-search': search,
-      'v-classifyList': classifyList,
-      'v-tagList': tagList
+      'v-categoryList': categoryList
     },
     methods: {
       processIndex(index){
-        let j = index * 5,
-          k = (index + 1) * 5,
+        let j = index * 8,
+          k = (index + 1) * 8,
           l = this.articles.length,
           q = l < k ? l : k;
         this.articleRendered = [];
@@ -61,15 +57,14 @@
         res = res.body;
         if (res.errno === ERR_OK) {
           this.articles = res.data.articles;
-          this.classifys = res.data.classifys;
-          this.tags = res.data.tags;
-          this.articleRendered = res.data.articles.slice(0, 5);
+          this.categories = res.data.categories;
+          this.articleRendered = res.data.articles.slice(0, 8);
         }
       })
     },
     computed: {
       pageNum(){
-        let i = Math.floor(this.articles.length / 5) + 1;
+        let i = Math.floor(this.articles.length / 8) + 1;
         return i;
       },
     }
@@ -78,12 +73,13 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .content
-    margin: 10px 180px 0 180px
     display: flex
+    margin: 10px 180px 0 180px
+    padding-bottom: 50px
     .articles
       flex: 1
       .article-list
-        min-height: 650px
+        min-height: 1050px
       .article
         width: 650px
         border-bottom: 1px solid rgb(238, 238, 238)

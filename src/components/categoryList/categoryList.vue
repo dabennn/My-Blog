@@ -2,7 +2,7 @@
   <div class="classifys">
     <h1 class="title">Categories:</h1>
     <ul class="clearfix">
-      <li class="classify-item" v-for="classify in classifys">
+      <li class="classify-item" v-for="classify in categories">
         <a href="" :class="[classify.num !== 0 ? hasNum : noNum]" @click.prevent="">{{classify.name}}</a>
         <span class="num">( {{classify.num}} )</span>
       </li>
@@ -19,7 +19,7 @@
       };
     },
     props: [
-      'classifys'
+      'categories'
     ]
   };
 </script>

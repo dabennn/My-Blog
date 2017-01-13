@@ -2,14 +2,14 @@
   <div class="pagination clearfix">
     <ul class="page-list">
       <li class="page-index prev" v-if="pageNum > 2" @click="toPrev" :class="{inactive:select === 0}">
-        <a class="page-link" href="" @click="preventDefault">«</a>
+        <a class="page-link" href="" @click.prevent="">«</a>
       </li>
       <li class="page-index" :class="{selected:select === index}" v-for="(num,index) in pageNum"
           @click="getIndex(index)">
-        <a class="page-link" href="" @click="preventDefault">{{num}}</a>
+        <a class="page-link" href="" @click.prevent="">{{num}}</a>
       </li>
       <li class="page-index next" v-if="pageNum > 2" @click="toNext" :class="{inactive:select === pageNum - 1}">
-        <a class="page-link" href="" @click="preventDefault">»</a>
+        <a class="page-link" href="" @click.prevent="">»</a>
       </li>
     </ul>
   </div>
@@ -26,9 +26,6 @@
       'pageNum'
     ],
     methods: {
-      preventDefault(e){
-        e.preventDefault();
-      },
       getIndex(index){
         this.select = index;
         this.$emit('getIndex', this.select);
@@ -53,7 +50,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .pagination
-    margin-top: 10px
+    margin-top: 40px
     .page-index
       float: left
       display: inline-block

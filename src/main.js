@@ -7,6 +7,7 @@ import home from 'components/home/home.vue';
 import notes from 'components/notes/notes.vue';
 import about from 'components/about/about.vue';
 import category from 'components/category/category.vue';
+import article from 'components/article/article.vue';
 
 Vue.use(vueRouter);
 Vue.use(vueResource);
@@ -28,6 +29,11 @@ const routes = [
   {
     path: '/about',
     component: about
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: article
   }
 ];
 const router = new vueRouter({

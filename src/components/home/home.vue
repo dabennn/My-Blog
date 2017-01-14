@@ -3,10 +3,10 @@
     <div class="articles">
       <div class="article-list">
         <ul>
-          <li v-for="article in articleRendered" class="article">
-            <h3 class="title">
-              <a href="#" class="title-link">{{article.title}}</a>
-            </h3>
+          <li v-for="article in articleRendered" class="article-item">
+            <h1 class="title">
+              <router-link to="/article" class="title-link">{{article.title}}</router-link>
+            </h1>
             <span class="date">{{article.date}}</span>
             <p class="excerpt">{{article.excerpt}}</p>
           </li>
@@ -80,7 +80,7 @@
       flex: 1
       .article-list
         min-height: 1050px
-      .article
+      .article-item
         width: 650px
         border-bottom: 1px solid rgb(238, 238, 238)
         margin: 30px 0 30px 0

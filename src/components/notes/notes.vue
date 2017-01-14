@@ -10,14 +10,12 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :categories="categories"></v-categoryList>
     </div>
   </div>
 </template>
 
 <script>
   import search from 'components/search/search.vue';
-  import categoryList from 'components/categoryList/categoryList.vue';
   const ERR_OK = 0;
   export default{
     data(){
@@ -27,15 +25,13 @@
       };
     },
     components: {
-      'v-search': search,
-      'v-categoryList': categoryList
+      'v-search': search
     },
     created(){
       this.$http.get('/api/notes').then((res)=> {
         res = res.body;
         if (res.errno === ERR_OK) {
           this.notes = res.data.notes;
-          this.categories = res.data.categories;
         }
       })
     }

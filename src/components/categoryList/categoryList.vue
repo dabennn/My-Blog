@@ -2,8 +2,8 @@
   <div class="classifys">
     <h1 class="title">Categories:</h1>
     <ul class="clearfix">
-      <li class="classify-item" v-for="classify in categories">
-        <a href="" :class="[classify.num !== 0 ? hasNum : noNum]" @click.prevent="">{{classify.name}}</a>
+      <li class="classify-item" v-for="(classify,index) in categories">
+        <a href="" :class="[classify.num !== 0 ? hasNum : noNum]" @click.prevent="goAnchor('#anchor'+index,wrapper)">{{classify.name}}</a>
         <span class="num">( {{classify.num}} )</span>
       </li>
     </ul>
@@ -11,16 +11,19 @@
 </template>
 
 <script>
+  import mixin from 'common/js/mixin.js';
+
   export default{
     data(){
       return {
-        hasNum:'hasNum',
-        noNum:'noNum'
+        hasNum: 'hasNum',
+        noNum: 'noNum'
       };
     },
     props: [
-      'categories'
-    ]
+      'categories', 'wrapper'
+    ],
+    mixins: [mixin]
   };
 </script>
 

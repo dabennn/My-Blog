@@ -1,8 +1,10 @@
 <template>
   <div class="category">
-    <div class="categories-wrapper">
-      <div v-for="category in categories">
-        <h1 class="category-name">{{category.name}} :</h1>
+    <div class="categories-wrapper" ref="wrapper">
+      <div v-for="(category,index) in categories">
+        <h1 class="category-name">
+          <a :id="'anchor'+index">{{category.name}} :</a>
+        </h1>
         <ul>
           <li class="category-title" v-for="title in category.titles">
             <a href="" class="title-link">{{title}}</a>
@@ -12,7 +14,7 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :categories="categories"></v-categoryList>
+      <v-categoryList :categories="categories" :wrapper="this.$refs.wrapper"></v-categoryList>
     </div>
   </div>
 </template>
@@ -45,6 +47,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .category
     margin: 10px 180px 0 180px
+    min-height: 1050px
     display: flex
     .categories-wrapper
       margin-top: 30px

@@ -3,12 +3,12 @@
     <div class="articles">
       <div class="article-list">
         <ul>
-          <li v-for="article in articleRendered" class="article-item">
+          <li v-for="articles in articleRendered" class="article-item">
             <h1 class="title">
-              <router-link to="/article" class="title-link">{{article.title}}</router-link>
+              <router-link to="/article" class="title-link">{{articles.title}}</router-link>
             </h1>
-            <span class="date">{{article.date}}</span>
-            <p class="excerpt">{{article.excerpt}}</p>
+            <span class="date">{{articles.date}}</span>
+            <p class="excerpt">{{articles.excerpt}}</p>
           </li>
         </ul>
       </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :categories="categories"></v-categoryList>
+      <v-categoryList :category="category"></v-categoryList>
     </div>
   </div>
 </template>
@@ -25,13 +25,13 @@
   import pagination from 'components/pagination/pagination.vue';
   import search from 'components/search/search.vue';
   import categoryList from 'components/categoryList/categoryList.vue';
-  const ERR_OK = 0;
+  const ERR_OK = 200;
 
   export default{
     data(){
       return {
-        articles: [],
-        categories: {},
+        article: [],
+        category: [],
         articleRendered: []
       };
     },
@@ -44,29 +44,34 @@
       processIndex(index){
         let j = index * 8,
           k = (index + 1) * 8,
-          l = this.articles.length,
+          l = this.article.length,
           q = l < k ? l : k;
         this.articleRendered = [];
         for (let i = j; i < q; i++) {
-          this.articleRendered.push(this.articles[i]);
+          this.articleRendered.push(this.article[i]);
         }
       }
     },
     created() {
-      this.$http.get('api/articles').then((res)=> {
-        res = res.body;
-        if (res.errno === ERR_OK) {
-          this.articles = res.data.articles;
-          this.categories = res.data.categories;
-          this.articleRendered = res.data.articles.slice(0, 8);
+      this.$http.get('http://localhost/textphp/data.php').then((res)=> {
+        res = JSON.parse(res.body);
+        if (res.code === ERR_OK) {
+          this.article = res.data.articles.article;
+          this.category = res.data.articles.category;
+          this.articleRendered = this.article.slice(0, 8);
         }
       })
     },
     computed: {
       pageNum(){
-        let i = Math.floor(this.articles.length / 8) + 1;
+        let i = Math.floor(this.article.length / 8) + 1;
         return i;
-      },
+      }
+    },
+    beforeRouteLeave(to,from,next){
+      let path = to.path;
+      this.$store.commit('hiddenHeader',path);
+      next();
     }
   };
 </script>
@@ -95,7 +100,7 @@
               position: absolute
               width: 100%
               height: 2px
-              bottom: -2px
+              bottom: -4px
               left: 0
               background: rgb(38, 166, 238)
               visibility: hidden
@@ -108,8 +113,9 @@
           display: inline-block
           font-size: 10px
           color: #999
-          margin: 10px 0 10px 0
+          margin: 15px 0 13px 0
         .excerpt
+          font-size: 15px
           margin-bottom: 30px
     .sidebar
       flex: 0 1 300px

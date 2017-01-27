@@ -28,6 +28,10 @@
       this.$nextTick(()=>{
         this.$refs.ocontent.innerHTML = marked(mark.content);
       })
+    },
+    beforeRouteLeave(to,from,next){
+      this.$store.commit('showHeader');
+      next();
     }
   };
 </script>

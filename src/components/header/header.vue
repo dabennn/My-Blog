@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-    <v-navbar></v-navbar>
     <div class="introduction">
       <div class="text">Do not go gentle into that good night</div>
       <ul class="infomation">
@@ -24,24 +23,18 @@
 </template>
 
 <script>
-  import navbar from 'components/navbar/navbar.vue';
-
-  export default{
-    components: {
-      'v-navbar': navbar
-    }
-  };
+  export default{};
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   .header
-    height: 255px
+    height: 142px
+    padding-top: 48px
     width: 100%
     background-color: rgb(38, 166, 238)
     .introduction
       position: relative
       margin-left: 180px
-      margin-top: 40px
       .text
         font-size: 32px
         color: #fff

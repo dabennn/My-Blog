@@ -16,22 +16,23 @@
 
 <script>
   import search from 'components/search/search.vue';
-  const ERR_OK = 0;
+  const ERR_OK = 200;
   export default{
     data(){
       return {
-        notes: {},
-        categories: []
+        notes: [],
+        category: []
       };
     },
     components: {
       'v-search': search
     },
     created(){
-      this.$http.get('/api/notes').then((res)=> {
-        res = res.body;
-        if (res.errno === ERR_OK) {
-          this.notes = res.data.notes;
+      this.$http.get('http://localhost/textphp/data.php').then((res)=> {
+        res = JSON.parse(res.body);
+        if (res.code === ERR_OK) {
+          this.notes = res.data.notes.note;
+          this.category = res.data.notes.category;
         }
       })
     }

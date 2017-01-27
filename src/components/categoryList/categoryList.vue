@@ -2,9 +2,9 @@
   <div class="classifys">
     <h1 class="title">Categories:</h1>
     <ul class="clearfix">
-      <li class="classify-item" v-for="(classify,index) in categories">
-        <a href="" :class="[classify.num !== 0 ? hasNum : noNum]" @click.prevent="goAnchor('#anchor'+index,wrapper)">{{classify.name}}</a>
-        <span class="num">( {{classify.num}} )</span>
+      <li class="category-item" v-for="(item,index) in category">
+        <a href="" :class="[item.num !== 0 ? hasNum : noNum]" @click.prevent="goAnchor('#anchor'+index,wrapper)">{{item.name}}</a>
+        <span class="num">( {{item.num}} )</span>
       </li>
     </ul>
   </div>
@@ -21,7 +21,7 @@
       };
     },
     props: [
-      'categories', 'wrapper'
+      'category', 'wrapper'
     ],
     mixins: [mixin]
   };
@@ -34,7 +34,7 @@
       margin-bottom: 15px
       font-size: 20px
       color: rgb(38, 166, 238)
-    .classify-item
+    .category-item
       display: inline-block
       width: 200px
       height: 45px

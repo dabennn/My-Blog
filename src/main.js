@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import vueRouter from 'vue-router';
 import vueResource from 'vue-resource';
+import Vuex from 'vuex';
 import 'common/stylus/index.styl';
 import home from 'components/home/home.vue';
 import notes from 'components/notes/notes.vue';
@@ -11,7 +12,23 @@ import article from 'components/article/article.vue';
 
 Vue.use(vueRouter);
 Vue.use(vueResource);
+Vue.use(Vuex);
 
+const store = new Vuex.Store({
+  state:{
+    headerShow:true
+  },
+  mutations:{
+    hiddenHeader(state,path){
+      if(path === '/article'){
+        state.headerShow = false;
+      }
+    },
+    showHeader(state){
+      state.headerShow = true;
+    }
+  }
+});
 
 const routes = [
   {
@@ -43,6 +60,7 @@ const router = new vueRouter({
 
 new Vue({
   router,
+  store,
   template: '<App/>',
   components: {App}
 }).$mount('#app');

@@ -1,12 +1,12 @@
 <template>
   <div class="category">
     <div class="categories-wrapper" ref="wrapper">
-      <div v-for="(category,index) in categories">
+      <div v-for="(item,index) in category">
         <h1 class="category-name">
-          <a :id="'anchor'+index">{{category.name}} :</a>
+          <a :id="'anchor'+index">{{item.name}} :</a>
         </h1>
         <ul>
-          <li class="category-title" v-for="title in category.titles">
+          <li class="category-title" v-for="title in item.title">
             <a href="" class="title-link">{{title}}</a>
           </li>
         </ul>
@@ -14,7 +14,7 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :categories="categories" :wrapper="this.$refs.wrapper"></v-categoryList>
+      <v-categoryList :category="category" :wrapper="this.$refs.wrapper"></v-categoryList>
     </div>
   </div>
 </template>
@@ -22,11 +22,11 @@
 <script>
   import search from 'components/search/search.vue';
   import categoryList from 'components/categoryList/categoryList.vue';
-  const ERR_OK = 0;
+  const ERR_OK = 200;
   export default{
     data(){
       return {
-        categories: []
+        category: []
       };
     },
     components: {
@@ -34,10 +34,10 @@
       'v-categoryList': categoryList
     },
     created(){
-      this.$http.get('/api/articles').then((res)=> {
-        res = res.body;
-        if (res.errno === ERR_OK) {
-          this.categories = res.data.categories;
+      this.$http.get('http://localhost/textphp/data.php').then((res)=> {
+        res = JSON.parse(res.body);
+        if (res.code === ERR_OK) {
+          this.category = res.data.articles.category;
         }
       })
     }

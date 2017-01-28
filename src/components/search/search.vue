@@ -28,7 +28,7 @@
   .search
     margin-top: 30px
     .title
-      margin-bottom: 15px
+      margin:0 0 15px 0
       font-size: 20px
       color: rgb(38, 166, 238)
     .search-box

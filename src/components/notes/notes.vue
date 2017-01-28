@@ -2,7 +2,7 @@
   <div class="notes">
     <div class="note-list">
       <h1 class="title">Notes:</h1>
-      <ul>
+      <ul class="note-lists">
         <li class="note" v-for="note in notes">
           <a class="note-link" href="">{{note.title}}</a>
         </li>
@@ -48,14 +48,16 @@
       margin-top: 30px
       flex: 1
       .title
-        margin-bottom: 20px
+        margin: 0 0 20px 0
         font-size: 24px
         color: rgb(38, 166, 238)
-      .note
-        margin: 0 0 15px 50px
-        list-style: initial
-        .note-link:hover
-          border-bottom: 1px solid #000
+      .note-lists
+        padding-left: 0
+        .note
+          margin: 0 0 15px 50px
+          list-style: initial
+          .note-link:hover
+            border-bottom: 1px solid #000
     .sidebar
       flex: 0 1 300px
 </style>

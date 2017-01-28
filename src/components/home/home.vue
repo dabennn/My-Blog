@@ -2,11 +2,11 @@
   <div class="content">
     <div class="articles">
       <div class="article-list">
-        <ul>
+        <ul class="aritcles">
           <li v-for="articles in articleRendered" class="article-item">
-            <h1 class="title">
+            <h2 class="title">
               <router-link to="/article" class="title-link">{{articles.title}}</router-link>
-            </h1>
+            </h2>
             <span class="date">{{articles.date}}</span>
             <p class="excerpt">{{articles.excerpt}}</p>
           </li>
@@ -68,9 +68,9 @@
         return i;
       }
     },
-    beforeRouteLeave(to,from,next){
+    beforeRouteLeave(to, from, next){
       let path = to.path;
-      this.$store.commit('hiddenHeader',path);
+      this.$store.commit('hiddenHeader', path);
       next();
     }
   };
@@ -85,38 +85,42 @@
       flex: 1
       .article-list
         min-height: 1050px
-      .article-item
-        width: 650px
-        border-bottom: 1px solid rgb(238, 238, 238)
-        margin: 30px 0 30px 0
-        .title
-          font-size: 24px
-          color: rgb(38, 166, 238)
-          .title-link
-            display: inline-block
-            position: relative
-            &::before
-              content: ''
-              position: absolute
-              width: 100%
-              height: 2px
-              bottom: -4px
-              left: 0
-              background: rgb(38, 166, 238)
-              visibility: hidden
-              transform: scaleX(0)
-              transition: all 0.2s ease-in-out 0s
-            &:hover::before
-              visibility: visible
-              transform: scaleX(1)
-        .date
-          display: inline-block
-          font-size: 10px
-          color: #999
-          margin: 15px 0 13px 0
-        .excerpt
-          font-size: 15px
-          margin-bottom: 30px
+        .aritcles
+          padding-left: 0
+          list-style: none
+          .article-item
+            width: 650px
+            border-bottom: 1px solid rgb(238, 238, 238)
+            margin: 30px 0 30px 0
+            .title
+              margin: 0
+              font-size: 24px
+              color: rgb(38, 166, 238)
+              .title-link
+                display: inline-block
+                position: relative
+                &::before
+                  content: ''
+                  position: absolute
+                  width: 100%
+                  height: 2px
+                  bottom: -4px
+                  left: 0
+                  background: rgb(38, 166, 238)
+                  visibility: hidden
+                  transform: scaleX(0)
+                  transition: all 0.2s ease-in-out 0s
+                &:hover::before
+                  visibility: visible
+                  transform: scaleX(1)
+            .date
+              display: inline-block
+              font-size: 10px
+              color: #999
+              margin: 15px 0 13px 0
+            .excerpt
+              font-size: 15px
+              margin: 0 0 30px 0
     .sidebar
       flex: 0 1 300px
 </style>

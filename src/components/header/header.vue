@@ -2,7 +2,7 @@
   <div class="header">
     <div class="introduction">
       <div class="text">Do not go gentle into that good night</div>
-      <ul class="infomation">
+      <ul class="information clearfix">
         <li>
           <i class="icon-location"></i>
           <span class="text">Hangzhou,China</span>
@@ -30,6 +30,7 @@
   .header
     height: 142px
     padding-top: 48px
+    color: #fff
     width: 100%
     background-color: rgb(38, 166, 238)
     .introduction
@@ -37,10 +38,10 @@
       margin-left: 180px
       .text
         font-size: 32px
-        color: #fff
-      .infomation
-        color: #fff
-        margin-top: 55px
+      .information
+        margin: 65px 0 0 0
+        list-style: none
+        padding-left: 0
         li
           float: left
           margin-right: 25px

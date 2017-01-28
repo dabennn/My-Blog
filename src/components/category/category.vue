@@ -5,7 +5,7 @@
         <h1 class="category-name">
           <a :id="'anchor'+index">{{item.name}} :</a>
         </h1>
-        <ul>
+        <ul class="category-lists">
           <li class="category-title" v-for="title in item.title">
             <a href="" class="title-link">{{title}}</a>
           </li>
@@ -33,8 +33,8 @@
       'v-search': search,
       'v-categoryList': categoryList
     },
-    created(){
-      this.$http.get('http://localhost/textphp/data.php').then((res)=> {
+    created() {
+      this.$http.get('http://localhost/textphp/data.php').then((res) => {
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {
           this.category = res.data.articles.category;
@@ -53,14 +53,17 @@
       margin-top: 30px
       flex: 1
       .category-name
-        margin-bottom: 25px
+        margin: 0 0 25px 0
         font-size: 24px
         color: rgb(38, 166, 238)
-      .category-title
-        margin: 0 0 15px 50px
-        list-style: initial
-        .title-link:hover
-          border-bottom: 1px solid #000
+      .category-lists
+        padding-left: 0
+        margin-bottom: 25px
+        .category-title
+          margin: 0 0 15px 50px
+          list-style: initial
+          .title-link:hover
+            border-bottom: 1px solid #000
     .sidebar
       flex: 0 1 300px
 </style>

@@ -10,28 +10,33 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
+      <v-categoryList :category="category"></v-categoryList>
     </div>
   </div>
 </template>
 
 <script>
   import search from 'components/search/search.vue';
+  import categoryList from 'components/categoryList/categoryList.vue';
   const ERR_OK = 200;
   export default{
     data(){
       return {
         notes: [],
+        notesRendered:[],
         category: []
       };
     },
     components: {
-      'v-search': search
+      'v-search': search,
+      'v-categoryList': categoryList
     },
     created(){
       this.$http.get('http://localhost/textphp/data.php').then((res)=> {
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {
           this.notes = res.data.notes.note;
+          this.notesRendered = this.notes;
           this.category = res.data.notes.category;
         }
       })

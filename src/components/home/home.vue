@@ -16,7 +16,6 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :category="category"></v-categoryList>
     </div>
   </div>
 </template>
@@ -24,21 +23,18 @@
 <script>
   import pagination from 'components/pagination/pagination.vue';
   import search from 'components/search/search.vue';
-  import categoryList from 'components/categoryList/categoryList.vue';
   const ERR_OK = 200;
 
   export default{
     data(){
       return {
         article: [],
-        category: [],
         articleRendered: []
       };
     },
     components: {
       'v-pagination': pagination,
-      'v-search': search,
-      'v-categoryList': categoryList
+      'v-search': search
     },
     methods: {
       processIndex(index){
@@ -57,7 +53,6 @@
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {
           this.article = res.data.articles.article;
-          this.category = res.data.articles.category;
           this.articleRendered = this.article.slice(0, 8);
         }
       })

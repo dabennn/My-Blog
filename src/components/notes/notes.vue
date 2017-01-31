@@ -4,7 +4,7 @@
       <h1 class="title">Notes:</h1>
       <ul class="note-lists">
         <li class="note" v-for="note in notes">
-          <a class="note-link" href="">{{note.title}}</a>
+          <router-link :to="'/note/'+note.index" class="note-link">{{note.title}}</router-link>
         </li>
       </ul>
     </div>
@@ -40,6 +40,10 @@
           this.category = res.data.notes.category;
         }
       })
+    },
+    beforeRouteLeave(to, from, next){
+      this.$store.commit('hiddenHeader', to.path);
+      next();
     }
   };
 </script>

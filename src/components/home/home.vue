@@ -5,7 +5,7 @@
         <ul class="aritcles">
           <li v-for="articles in articleRendered" class="article-item">
             <h2 class="title">
-              <router-link to="/article" class="title-link">{{articles.title}}</router-link>
+              <router-link :to="'/article/'+articles.index" class="title-link">{{articles.title}}</router-link>
             </h2>
             <span class="date">{{articles.date}}</span>
             <p class="excerpt">{{articles.excerpt}}</p>
@@ -64,8 +64,7 @@
       }
     },
     beforeRouteLeave(to, from, next){
-      let path = to.path;
-      this.$store.commit('hiddenHeader', path);
+      this.$store.commit('hiddenHeader', to.path);
       next();
     }
   };

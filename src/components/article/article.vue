@@ -1,7 +1,7 @@
 <template>
   <div class="article">
     <!--<h1 class="article-title">{{article.title}}</h1>-->
-    <article class="article-content" ref="ocontent">
+    <article class="article-content" ref="oContent">
       {{article.excerpt}}
     </article>
   </div>
@@ -26,7 +26,7 @@
         }
       });
       this.$nextTick(()=>{
-        this.$refs.ocontent.innerHTML = marked(mark.content);
+        this.$refs.oContent.innerHTML = marked(mark.content);
       })
     },
     beforeRouteLeave(to,from,next){

@@ -98,7 +98,6 @@
           &.link_article
             color: rgba(200, 200, 200, 0.9)
             &:hover
-              border-bottom: 2px solid rgba(38, 166, 238, 1)
               color: rgba(38, 166, 238, 1)
           &.active
             color: rgba(255, 255, 255, 1)

@@ -15,12 +15,12 @@ Vue.use(vueResource);
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state:{
-    headerShow:true
+  state: {
+    headerShow: true
   },
-  mutations:{
-    hiddenHeader(state,path){
-      if(path === '/article'){
+  mutations: {
+    hiddenHeader(state, path){
+      if (path.match(/\/article\//g) || path.match(/\/note\//g)) {
         state.headerShow = false;
       }
     },
@@ -48,9 +48,9 @@ const routes = [
     component: about
   },
   {
-    path: '/article',
-    name: 'article',
-    component: article
+    path: '/article/:index',
+    component: article,
+    alias: '/note/:index'
   }
 ];
 const router = new vueRouter({

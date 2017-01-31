@@ -6,8 +6,8 @@
           <a :id="'anchor'+index">{{item.name}} :</a>
         </h1>
         <ul class="category-lists">
-          <li class="category-title" v-for="title in item.title">
-            <a href="" class="title-link">{{title}}</a>
+          <li class="category-title" v-for="title in item.titles">
+            <router-link :to="'/article/'+title.index" class="title-link">{{title.title}}</router-link>
           </li>
         </ul>
       </div>
@@ -40,6 +40,10 @@
           this.category = res.data.articles.category;
         }
       })
+    },
+    beforeRouteLeave(to, from, next){
+      this.$store.commit('hiddenHeader', to.path);
+      next();
     }
   };
 </script>

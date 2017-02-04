@@ -3,14 +3,14 @@
     <div class="note-list">
       <h1 class="title">Notes:</h1>
       <ul class="note-lists">
-        <li class="note" v-for="note in notes">
+        <li class="note" v-for="note in notesRendered">
           <router-link :to="'/note/'+note.index" class="note-link">{{note.title}}</router-link>
         </li>
       </ul>
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :category="category"></v-categoryList>
+      <v-categoryList :category="makeCategory" v-on:getNotesRendered="renderNotes"></v-categoryList>
     </div>
   </div>
 </template>
@@ -27,6 +27,11 @@
         category: []
       };
     },
+    methods:{
+      renderNotes(titles){
+        this.notesRendered = titles;
+      }
+    },
     components: {
       'v-search': search,
       'v-categoryList': categoryList
@@ -40,6 +45,24 @@
           this.category = res.data.notes.category;
         }
       })
+    },
+    computed:{
+      makeCategory(){
+        let newCategory = this.category;
+        let newTitles = [];
+        let newCategoryItem = {};
+
+        for(let i=0;i<newCategory.length;i++){
+          newTitles = newTitles.concat(newCategory[i].titles);
+        }
+
+        newCategoryItem.name = '全部';
+        newCategoryItem.titles = newTitles;
+        newCategoryItem.num = newTitles.length;
+        newCategory.unshift(newCategoryItem);
+
+        return newCategory;
+      }
     },
     beforeRouteLeave(to, from, next){
       this.$store.commit('hiddenHeader', to.path);

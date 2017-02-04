@@ -5,7 +5,7 @@
     <button class="search-btn" @click="searching" ref="oBtn">
       <i class="icon-search"></i>
     </button>
-    <span class="search-result"></span>
+    <!--<span class="search-result"></span>-->
   </div>
 </template>
 

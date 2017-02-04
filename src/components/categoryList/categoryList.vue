@@ -3,7 +3,7 @@
     <h1 class="title">Categories:</h1>
     <ul class="categories clearfix">
       <li class="category-item" v-for="(item,index) in category" v-if="item.num !== 0">
-        <a href="" :class="[item.num !== 0 ? hasNum : noNum]" @click.prevent="goAnchor('#anchor'+index,wrapper)">{{item.name}}</a>
+        <a href="" :class="[item.num !== 0 ? hasNum : noNum]" @click.prevent="goAnchor('#anchor'+index,wrapper)" @click="getNotesRendered(item.titles)">{{item.name}}</a>
         <span class="num">( {{item.num}} )</span>
       </li>
     </ul>
@@ -17,8 +17,15 @@
     data(){
       return {
         hasNum: 'hasNum',
-        noNum: 'noNum'
+        noNum: 'noNum',
+        titles:[]
       };
+    },
+    methods:{
+      getNotesRendered(titles){
+        this.titles = titles;
+        this.$emit('getNotesRendered',this.titles);
+      }
     },
     props: [
       'category', 'wrapper'

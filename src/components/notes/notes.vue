@@ -10,7 +10,7 @@
     </div>
     <div class="sidebar">
       <v-search></v-search>
-      <v-categoryList :category="makeCategory" v-on:getNotesRendered="renderNotes"></v-categoryList>
+      <v-categoryList :category="category" v-on:getNotesRendered="renderNotes"></v-categoryList>
     </div>
   </div>
 </template>
@@ -23,11 +23,11 @@
     data(){
       return {
         notes: [],
-        notesRendered:[],
+        notesRendered: [],
         category: []
       };
     },
-    methods:{
+    methods: {
       renderNotes(titles){
         this.notesRendered = titles;
       }
@@ -45,24 +45,6 @@
           this.category = res.data.notes.category;
         }
       })
-    },
-    computed:{
-      makeCategory(){
-        let newCategory = this.category;
-        let newTitles = [];
-        let newCategoryItem = {};
-
-        for(let i=0;i<newCategory.length;i++){
-          newTitles = newTitles.concat(newCategory[i].titles);
-        }
-
-        newCategoryItem.name = '全部';
-        newCategoryItem.titles = newTitles;
-        newCategoryItem.num = newTitles.length;
-        newCategory.unshift(newCategoryItem);
-
-        return newCategory;
-      }
     },
     beforeRouteLeave(to, from, next){
       this.$store.commit('hiddenHeader', to.path);
@@ -82,6 +64,7 @@
       .title
         margin: 0 0 20px 0
         font-size: 24px
+        font-weight: 400
         color: rgb(38, 166, 238)
       .note-lists
         padding-left: 0

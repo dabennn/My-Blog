@@ -58,7 +58,8 @@
       flex: 1
       .category-name
         margin: 0 0 25px 0
-        font-size: 24px
+        font-size: 22px
+        font-weight: 400
         color: rgb(38, 166, 238)
       .category-lists
         padding-left: 0

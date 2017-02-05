@@ -88,7 +88,8 @@
             margin: 30px 0 30px 0
             .title
               margin: 0
-              font-size: 24px
+              font-size: 23px
+              font-weight: 400
               color: rgb(38, 166, 238)
               .title-link
                 display: inline-block

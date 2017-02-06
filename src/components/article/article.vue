@@ -38,7 +38,7 @@
         } else {
           return false;
         }
-        let url = 'http://localhost/textphp/article.php?type=' + type + '&query=' + qry;
+        let url = 'http://localhost/textphp/search.php?type=' + type + '&query=' + qry;
         return url;
       },
       getContent(){

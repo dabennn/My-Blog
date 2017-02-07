@@ -2,14 +2,14 @@
   <div class="pagination">
     <ul class="page-list clearfix">
       <li class="page-index prev" v-if="pageNum > 2" @click="toPrev" :class="{inactive:select === 0}">
-        <a class="page-link" href="" @click.prevent="">«</a>
+        <a class="page-link" href="" @click.prevent="top">«</a>
       </li>
       <li class="page-index" :class="{selected:select === index}" v-for="(num,index) in pageNum"
           @click="getIndex(index)">
-        <a class="page-link" href="" @click.prevent="">{{num}}</a>
+        <a class="page-link" href="" @click.prevent="top">{{num}}</a>
       </li>
       <li class="page-index next" v-if="pageNum > 2" @click="toNext" :class="{inactive:select === pageNum - 1}">
-        <a class="page-link" href="" @click.prevent="">»</a>
+        <a class="page-link" href="" @click.prevent="top">»</a>
       </li>
     </ul>
   </div>
@@ -43,6 +43,9 @@
           this.$emit('getIndex', this.select);
         }
         return;
+      },
+      top(){
+        window.scrollTo(0, 0);
       }
     }
   };

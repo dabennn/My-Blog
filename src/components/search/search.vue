@@ -2,14 +2,14 @@
   <div class="search clearfix">
     <h1 class="title">Search:</h1>
     <input class="search-box" type="text" placeholder="Search" @keydown.enter="enter" v-model.trim="value"
-           @keyup="asyncSearch">
+           @keyup="asyncSearch" @blur="blur" @focus="focus">
     <button class="search-btn" @click="searching" ref="oBtn">
       <i class="icon-search"></i>
     </button>
-    <span class="search-result">
+    <span class="search-result" v-show="searchBoxShow">
       <ul class="search-list">
           <li class="search-item" v-for="item in searchResult">
-            <router-link class="search-link" to="item.path">{{item.title}}</router-link>
+            <router-link class="search-link" :to="item.path">{{item.title}}</router-link>
           </li>
       </ul>
     </span>
@@ -22,7 +22,8 @@
     data(){
       return {
         value: '',
-        searchResult: []
+        searchResult: [],
+        searchBoxShow: false
       }
     },
     methods: {
@@ -30,18 +31,36 @@
         this.$refs.oBtn.click();
       },
       searching(){
-        if (this.value !== '') {
-          this.value = '';
+        if (this.searchResult.length !== 0) {
+          this.$router.push(this.searchResult[0].path);
         }
         return;
       },
       asyncSearch(){
-        this.$http.get('http://localhost/textphp/search.php?keyword=' + this.value).then((res)=> {
-          res = JSON.parse(res.body);
-          if (res.code === ERR_OK) {
-            this.searchResult = res.data;
-          }
-        })
+        if (this.value !== '') {
+          this.$http.get('http://localhost/textphp/search.php?keyword=' + this.value).then((res)=> {
+            res = JSON.parse(res.body);
+            if (res.code === ERR_OK) {
+              this.searchResult = res.data;
+              this.searchBoxShow = true;
+            }
+          })
+        } else {
+          this.searchResult = [];
+          this.searchBoxShow = false;
+        }
+      },
+      blur(){
+        let self = this;
+        setTimeout(function(){
+          self.searchBoxShow = false;
+        },100);
+      },
+      focus(){
+        if(this.value !== ''){
+          this.searchBoxShow = true;
+        }
+        return;
       }
     }
   };

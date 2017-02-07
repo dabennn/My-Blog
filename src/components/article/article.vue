@@ -18,6 +18,7 @@
       };
     },
     created(){
+      window.scrollTo(0, 0);
       this.$http.get(this.url).then((res)=> {
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {

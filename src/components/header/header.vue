@@ -15,7 +15,7 @@
         </li>
         <li>
           <i class="icon-email"></i>
-          <span class="text">dabennn07@gmail.com</span>
+          <span class="text" v-text="getEmail"></span>
         </li>
       </ul>
     </div>
@@ -23,7 +23,18 @@
 </template>
 
 <script>
-  export default{};
+  export default{
+    data(){
+      return {
+        email: 'da&ben&nn07@gm&ail.c&om'
+      }
+    },
+    computed: {
+      getEmail(){
+        return this.email.replace(/&/g,'');
+      }
+    }
+  };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

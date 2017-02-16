@@ -3,12 +3,14 @@
     <span class="back" onclick="window.history.go(-1)">
       <i class="icon-back"></i>
     </span>
-    <article class="article-content" ref="oContent" v-html="getContent"></article>
+    <article class="article-content markdown-body" ref="oContent" v-html="getContent"></article>
   </div>
 </template>
 
 <script>
   import marked from 'marked';
+  import highlight from 'highlight.js';
+  import 'github-markdown-css';
 
   const ERR_OK = 200;
   export default{
@@ -39,10 +41,24 @@
         } else {
           return false;
         }
-        let url = 'http://localhost/textphp/search.php?type=' + type + '&query=' + qry;
+        let url = 'http://localhost/textphp/lleon/search.php?type=' + type + '&query=' + qry;
         return url;
       },
       getContent(){
+        let code = document.querySelector('#code');
+        marked.setOptions({
+          renderer: new marked.Renderer(),
+          gfm: true,
+          tables: true,
+          breaks: false,
+          pedantic: false,
+          sanitize: false,
+          smartLists: true,
+          smartypants: false,
+          highlight: function (code) {
+            return require('highlight.js').highlightAuto(code).value;
+          }
+        });
         return marked(this.text);
       }
     },
@@ -54,6 +70,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import './../../../node_modules/highlight.js/styles/github-gist.css'
   .article
     min-height: 1050px
     margin: 30px 180px 0 180px
@@ -66,5 +83,11 @@
         cursor: pointer
     .article-content
       margin-top: 30px
+      &.markdown-body
+        box-sizing: border-box
+        min-width: 200px
+        max-width: 980px
+        margin-bottom: 30px
+        padding: 0 45px 45px 0
 
 </style>

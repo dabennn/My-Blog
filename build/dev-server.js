@@ -15,24 +15,24 @@ var port = process.env.PORT || config.dev.port
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-
-var appData = require('../data.json')
-var articles = appData.articleList
-var notes = appData.noteList
-var apiRoutes = express.Router()
-apiRoutes.get('/articles',function (req,res) {
-  res.json({
-    errno:0,
-    data:articles
-  })
-})
-apiRoutes.get('/notes',function (req,res) {
-  res.json({
-    errno:0,
-    data:notes
-  })
-})
-app.use('/api',apiRoutes)
+//
+// var appData = require('../data.json')
+// var articles = appData.articleList
+// var notes = appData.noteList
+// var apiRoutes = express.Router()
+// apiRoutes.get('/articles',function (req,res) {
+//   res.json({
+//     errno:0,
+//     data:articles
+//   })
+// })
+// apiRoutes.get('/notes',function (req,res) {
+//   res.json({
+//     errno:0,
+//     data:notes
+//   })
+// })
+// app.use('/api',apiRoutes)
 
 var compiler = webpack(webpackConfig)
 

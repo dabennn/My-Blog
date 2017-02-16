@@ -38,7 +38,7 @@
       },
       asyncSearch(){
         if (this.value !== '') {
-          this.$http.get('http://localhost/textphp/search.php?keyword=' + this.value).then((res)=> {
+          this.$http.get('http://localhost/textphp/lleon/search.php?keyword=' + this.value).then((res)=> {
             res = JSON.parse(res.body);
             if (res.code === ERR_OK) {
               this.searchResult = res.data;

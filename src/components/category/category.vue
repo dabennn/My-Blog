@@ -34,7 +34,7 @@
       'v-categoryList': categoryList
     },
     created() {
-      this.$http.get('http://localhost/textphp/data.php').then((res) => {
+      this.$http.get('http://localhost/textphp/lleon/data.php').then((res) => {
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {
           this.category = res.data.articles.category;

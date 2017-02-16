@@ -49,7 +49,7 @@
       }
     },
     created() {
-      this.$http.get('http://localhost/textphp/data.php').then((res)=> {
+      this.$http.get('http://localhost/textphp/lleon/data.php').then((res)=> {
         res = JSON.parse(res.body);
         if (res.code === ERR_OK) {
           this.article = res.data.articles.article;
@@ -59,7 +59,10 @@
     },
     computed: {
       pageNum(){
-        let i = Math.floor(this.article.length / 8) + 1;
+        let i = Math.floor(this.article.length / 8);
+        if(this.article.length % 8 !== 0){
+          i += 1;
+        }
         return i;
       }
     },

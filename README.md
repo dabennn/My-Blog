@@ -1,6 +1,5 @@
 # lleon
-这是我的博客的源码，欢迎交流和Fork
-
+这是我的[博客](lleon.xyz)的源码，欢迎交流和Fork
 ### 介绍
 - 前端用Vue.js，后端用的php
 - 用vue-router进行路由切换，vue-resource异步获取资源，vuex进行状态管理
